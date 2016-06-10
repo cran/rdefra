@@ -1,0 +1,12 @@
+078fbb18823713646c724a047ab369d6 *DESCRIPTION
+acdd68f780c4cde67aaf4a096a1837ec *NAMESPACE
+80c0ae18ddbbe4dea954e84712cb6b65 *R/EastingNorthing.R
+e17da0564cae26ee431fd3e56f6319fa *R/catalogue.R
+40f1acaa839cd2e0a6a338b29d025242 *R/get1Hdata.R
+b13e2bf21f44b293e3efb08384f7bc9d *R/getSiteID.R
+30977315a3387cf9432a72e2f0c4892f *data/stations.rda
+88649897098fc530e8e9ca6031190238 *man/EastingNorthing.Rd
+8a2aef24b79916190ef5ce68ed4c9264 *man/catalogue.Rd
+289f2140a3c4ec901b88822a884b3f93 *man/get1Hdata.Rd
+09c34bcfa0dcead068f28f66741b85d6 *man/getSiteID.Rd
+f17970ba4c1555219922a188f318bfd1 *man/stations.Rd
