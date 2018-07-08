@@ -274,7 +274,7 @@ stations_raw &lt;- ukair_catalogue()
 <pre><code class="r">stations_EnglandOzone &lt;- ukair_catalogue(pollutant = 1, country_id = 1)
 </code></pre>
 
-<p>The example above shows how to retrieve the 106 stations in England in which ozone is measured.</p>
+<p>The example above shows how to retrieve the 107 stations in England in which ozone is measured.</p>
 
 <h3>Get missing coordinates</h3>
 
@@ -348,21 +348,20 @@ df %&gt;%
 <pre><code class="r">data(&#39;stations&#39;)
 
 stations
-#&gt; # A tibble: 6,569 × 17
-#&gt;    UK.AIR.ID EU.Site.ID EMEP.Site.ID
-#&gt;        &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;
-#&gt; 1   UKA15910       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 2   UKA15956       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 3   UKA16663       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 4   UKA16097       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 5   UKA12536       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 6   UKA12949       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 7   UKA12399       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 8   UKA13340       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 9   UKA13341       &lt;NA&gt;         &lt;NA&gt;
-#&gt; 10  UKA15369       &lt;NA&gt;         &lt;NA&gt;
-#&gt; # ... with 6,559 more rows, and 14 more variables: Site.Name &lt;chr&gt;,
-#&gt; #   Environment.Type &lt;chr&gt;, Zone &lt;chr&gt;, Start.Date &lt;dttm&gt;,
+#&gt; # A tibble: 6,569 x 17
+#&gt;    UK.AIR.ID EU.Site.ID EMEP.Site.ID Site.Name     Environment.Type Zone  
+#&gt;    &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt; 
+#&gt;  1 UKA15910  &lt;NA&gt;       &lt;NA&gt;         &quot; SH15, SH20… &lt;NA&gt;             South…
+#&gt;  2 UKA15956  &lt;NA&gt;       &lt;NA&gt;         &quot; SH15, SH22… &lt;NA&gt;             South…
+#&gt;  3 UKA16663  &lt;NA&gt;       &lt;NA&gt;         &quot; SH15, SH22… &lt;NA&gt;             South…
+#&gt;  4 UKA16097  &lt;NA&gt;       &lt;NA&gt;         10 High Stre… &lt;NA&gt;             South…
+#&gt;  5 UKA12536  &lt;NA&gt;       &lt;NA&gt;         ABBOTS LANGL… &lt;NA&gt;             Great…
+#&gt;  6 UKA12949  &lt;NA&gt;       &lt;NA&gt;         ABERBARGOED 1 &lt;NA&gt;             South…
+#&gt;  7 UKA12399  &lt;NA&gt;       &lt;NA&gt;         ABERCARN 1    &lt;NA&gt;             South…
+#&gt;  8 UKA13340  &lt;NA&gt;       &lt;NA&gt;         ABERDARE 1N   &lt;NA&gt;             South…
+#&gt;  9 UKA13341  &lt;NA&gt;       &lt;NA&gt;         ABERDARE 2N   &lt;NA&gt;             South…
+#&gt; 10 UKA15369  &lt;NA&gt;       &lt;NA&gt;         ABERDARE 3N   &lt;NA&gt;             South…
+#&gt; # ... with 6,559 more rows, and 11 more variables: Start.Date &lt;dttm&gt;,
 #&gt; #   End.Date &lt;dttm&gt;, Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;, Altitude..m. &lt;dbl&gt;,
 #&gt; #   Networks &lt;chr&gt;, AURN.Pollutants.Measured &lt;chr&gt;,
 #&gt; #   Site.Description &lt;chr&gt;, Easting &lt;dbl&gt;, Northing &lt;dbl&gt;, SiteID &lt;chr&gt;
@@ -374,7 +373,7 @@ stations
 
 <h3>Plotting stations&#39; locations</h3>
 
-<p>In the raw catalogue, 3813 stations contain valid coordinates. After scraping DEFRA&#39;s web pages, the number of stations with valid coordinates rises to 6567. In the figure below, blue circles show all the stations with valid coordinates, while red circles show stations with available hourly data.</p>
+<p>In the raw catalogue, 3837 stations contain valid coordinates. After scraping DEFRA&#39;s web pages, the number of stations with valid coordinates rises to 6567. In the figure below, blue circles show all the stations with valid coordinates, while red circles show stations with available hourly data.</p>
 
 <pre><code class="r">stations_with_Hdata &lt;- which(!is.na(stations$SiteID))
 
