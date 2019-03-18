@@ -8,19 +8,19 @@ knitr::opts_chunk$set(
 )
 
 ## ------------------------------------------------------------------------
-#  packs <- c('httr', 'xml2', 'lubridate', 'tibble', 'dplyr', 'sp', 'devtools',
-#             'leaflet', 'zoo', 'testthat', 'knitr', 'Rmarkdown')
-#  new.packages <- packs[!(packs %in% installed.packages()[,'Package'])]
+#  packs <- c("httr", "xml2", "lubridate", "tibble", "dplyr", "sp", "devtools",
+#             "leaflet", "zoo", "testthat", "knitr", "Rmarkdown")
+#  new.packages <- packs[!(packs %in% installed.packages()[,"Package"])]
 #  if(length(new.packages)) install.packages(new.packages)
 
 ## ------------------------------------------------------------------------
-#  install.packages('rdefra')
+#  install.packages("rdefra")
 
 ## ------------------------------------------------------------------------
-#  devtools::install_github('ropensci/rdefra')
+#  devtools::install_github("ropensci/rdefra")
 
 ## ---- eval = TRUE--------------------------------------------------------
-library('rdefra')
+library("rdefra")
 
 ## ---- eval = TRUE--------------------------------------------------------
 # Get full catalogue
@@ -38,26 +38,26 @@ stations_EnglandOzone <- ukair_catalogue(pollutant = 1, country_id = 1)
 
 ## ---- eval = TRUE--------------------------------------------------------
 # Get 1 year of hourly ozone data from London Marylebone Road monitoring station
-df <- ukair_get_hourly_data('MY1', years=2015)
+df <- ukair_get_hourly_data("MY1", years=2015)
 
 # Aggregate to daily means and plot
-library('zoo')
+library("zoo")
 my1 <- zoo(x = df$Ozone, order.by = as.POSIXlt(df$datetime))
 
 ## ----hourlydata----------------------------------------------------------
 #  par(mai = c(0.5, 1, 0, 0))
 #  
 #  plot(aggregate(my1, as.Date(as.POSIXlt(df$datetime)), mean),
-#       main = '', xlab = '', ylab = expression(paste('Ozone concentration [',
-#                                                      mu, 'g/', m^3, ']')))
+#       main = "", xlab = "", ylab = expression(paste("Ozone concentration [",
+#                                                      mu, "g/", m^3, "]")))
 
 ## ----ozone---------------------------------------------------------------
 #  # Get 15 years of hourly ozone data from the same monitoring station
-#  library('ggplot2')
-#  library('dplyr')
-#  library('lubridate')
+#  library("ggplot2")
+#  library("dplyr")
+#  library("lubridate")
 #  
-#  df <- ukair_get_hourly_data('MY1', years = 2000:2015)
+#  df <- ukair_get_hourly_data("MY1", years = 2000:2015)
 #  df <- mutate(df,
 #               year = year(datetime),
 #               month = month(datetime),
@@ -73,23 +73,23 @@ my1 <- zoo(x = df$Ozone, order.by = as.POSIXlt(df$datetime))
 #    ylab(expression(paste("Ozone concentration (", mu, "g/",m^3,")")))
 
 ## ---- eval = TRUE--------------------------------------------------------
-data('stations')
+data("stations")
 
 stations
 
 ## ----map-----------------------------------------------------------------
 #  stations_with_Hdata <- which(!is.na(stations$SiteID))
 #  
-#  library('leaflet')
+#  library("leaflet")
 #  leaflet(data = stations) %>% addTiles() %>%
 #    addCircleMarkers(lng = ~Longitude[stations_with_Hdata],
 #                     lat = ~Latitude[stations_with_Hdata],
-#                     radius = 0.5, color='red',
+#                     radius = 0.5, color="red",
 #                     popup = ~SiteID[stations_with_Hdata]) %>%
 #    addCircleMarkers(lng = ~Longitude,
 #                     lat = ~Latitude,
 #                     popup = ~SiteID,
-#                     radius = 1, color='blue', fill = FALSE)
+#                     radius = 1, color="blue", fill = FALSE)
 #  
 
 ## ----dotchart1-----------------------------------------------------------
@@ -98,10 +98,10 @@ stations
 
 ## ----dotchart2-----------------------------------------------------------
 #  # Environment.Type
-#  dotchart(as.matrix(table(stations$Environment.Type[stations$Environment.Type != 'Unknown Unknown']))[,1])
+#  dotchart(as.matrix(table(stations$Environment.Type[stations$Environment.Type != "Unknown Unknown"]))[,1])
 
 ## ------------------------------------------------------------------------
-#  library('parallel')
+#  library("parallel")
 #  
 #  # Use detectCores() to find out many cores are available on your machine
 #  cl <- makeCluster(getOption("cl.cores", detectCores()))
