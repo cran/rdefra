@@ -76,7 +76,7 @@
 #'  \item{6 = Channel Islands}
 #'  }
 #'
-#' @return A named vector containing Easting and Northing coordinates.
+#' @return A dataframe listing stations and related information.
 #'
 #' @export
 #'
@@ -136,14 +136,22 @@ ukair_catalogue <- function(site_name = "",
 
   if (!is.na(catalogue_csv_link)) {
 
-    df <- utils::read.csv(catalogue_csv_link)
-    
-    j <- as.numeric(which(unlist(lapply(df, is.factor))))
-    # Convert data.frame columns from factors to characters
-    df[, j] <- lapply(df[, j], as.character)
+    df <- utils::read.csv(catalogue_csv_link, stringsAsFactors = FALSE)
+
+    # Loop through character columns
+    for (colx in 1:dim(df)[2]){
+      if ("character" %in% class(df[, colx]) &
+          length(grep("[^ -~]", df[, colx])) > 0){
+        # Remove non-ASCII characters
+        tempcol <- as.character(df[, colx])
+        Encoding(tempcol) <- "latin1"
+        tempcol <- iconv(x = tempcol, from = "latin1", to = "ASCII", sub = "")
+        # Remove carriage return
+        df[, colx] <- gsub("\\n", "", tempcol)
+      }
+    }
 
     # remove trailing and leading white spaces
-    # http://stackoverflow.com/questions/24172111/change-the-blank-cells-to-na
     df <- data.frame(apply(df, 2, function(x) trimws(x)),
                      stringsAsFactors = FALSE)
 
@@ -162,6 +170,7 @@ ukair_catalogue <- function(site_name = "",
     suppressWarnings(df[, "End.Date"] <- lubridate::ymd(df[, "End.Date"],
                                                    tz = "Europe/London"))
 
+    # Convert to numeric
     df[, "Northing"] <- as.numeric(as.character(df[, "Northing"]))
     df[, "Easting"] <- as.numeric(as.character(df[, "Easting"]))
     df[, "Latitude"] <- as.numeric(as.character(df[, "Latitude"]))
@@ -169,10 +178,6 @@ ukair_catalogue <- function(site_name = "",
     df[, "Altitude..m."] <- as.numeric(as.character(df[, "Altitude..m."]))
 
     return(tibble::as_tibble(df))
-
-  }else{
-
-    stop("No metadata available for the specified query")
 
   }
 

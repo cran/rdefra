@@ -1,3 +1,14 @@
+rdefra 0.3.8
+==============
+
+## BUG FIXES
+* Updated tests to be compatible with PROJ6 [#9](https://github.com/ropensci/rdefra/issues/9)
+
+## MINOR CHANGES
+* Removed obsolete packages in 'Suggests'
+* Fixed invalid URIs
+* The following directory looks like a leftover from knitr
+
 rdefra 0.3.6
 ==============
 
